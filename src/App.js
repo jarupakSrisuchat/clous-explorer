@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+import { mode } from "@chakra-ui/theme-tools";
+import * as React from "react";
+import { BrowserRouter } from "react-router-dom";
+import "./App.css";
+import ChainProvider from "./contexts/chain";
+import WindowProvider from "./contexts/window";
+import Index from "./pages";
 
-function App() {
+export default function App() {
+  const theme = extendTheme({
+    components: {
+      Heading: {
+        baseStyle: {
+          fontWeight: "700",
+        },
+      },
+      Divider: {
+        baseStyle: {
+          height: 0,
+        },
+      },
+    },
+    styles: {
+      global: (props) => ({
+        body: {
+          bg: mode("gray.50", "gray.800")(props),
+        },
+      }),
+    },
+  });
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <WindowProvider>
+      <ChainProvider>
+        <BrowserRouter>
+          <ChakraProvider theme={theme}>
+            <Index />
+          </ChakraProvider>
+        </BrowserRouter>
+      </ChainProvider>
+    </WindowProvider>
   );
 }
-
-export default App;

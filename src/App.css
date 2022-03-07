@@ -36,3 +36,47 @@
     transform: rotate(360deg);
   }
 }
+
+@media (min-width: 992px){
+  .navbar-expand-lg .navbar-nav .chakra-linkbox {
+    padding-left: 30px;
+}
+.column50{
+  width: 50%;
+}
+}
+
+
+@media (max-width: 992px){
+  .navbar-expand-lg .navbar-nav .chakra-linkbox {
+    padding: 15px;
+}
+.navbar-expand-lg .d-flex {
+    padding-top: 30px;
+}
+.navbar-collapse {
+    align-items: flex-start;
+}
+.column50{
+  width: 100vw;
+}
+}
+
+.navbar-light .navbar-toggler{
+  color: currentColor;
+}
+.textOverflow {
+    overflow: hidden;
+    white-space:nowrap;
+    /* word-break: break-all; */
+    text-overflow:ellipsis;
+    /* word-wrap: break-word; */
+  }
+hr:not([size]) {
+  height: 0;
+  color: grey;
+}
+
+.informationList{
+  min-width: 100px;
+}
