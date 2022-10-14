@@ -19,4 +19,9 @@ export const routes = [
     display: "Proposal",
     path: "/proposal",
   },
+  {
+    name: "schemas",
+    display: "Schemas (SIX-base)",
+    path: "/nft-schemas",
+  },
 ];

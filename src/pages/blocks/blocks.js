@@ -23,6 +23,7 @@ export default function Blocks() {
     chainContext.setChainName(chain);
   }, [chain]);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(async () => {
     if (getChainInfo(chain)) {
       if (chainContext.height > 50 && getChainInfo(chain)) {

@@ -9,6 +9,8 @@ import { useWindowDimension } from "../contexts/window";
 import Block from "./blocks/block";
 import Blocks from "./blocks/blocks";
 import Dashboard from "./dashboard/dashboard";
+import Schema from "./schemas/schema";
+import Schemas from "./schemas/schemas";
 import Transaction from "./transaction/transaction";
 import Validators from "./validators/validator";
 
@@ -23,7 +25,7 @@ export const Index = () => {
     chainContext.toggleTrigger();
     const interval = setInterval(() => {
       chainContext.toggleTrigger();
-    }, 10000);
+    }, 50000);
 
     return () => clearInterval(interval); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
   }, []);
@@ -48,6 +50,8 @@ export const Index = () => {
           <Route path="/:chain/validators" element={<Validators />} />
           <Route path="/:chain/blocks/:number" element={<Block />} />
           <Route path="/:chain/transaction/:hash" element={<Transaction />} />
+          <Route path="/:chain/nft-schemas" element={<Schemas />} />
+          <Route path="/:chain/nft-schemas/:code" element={<Schema />} />
         </Routes>
       </Box>
     </Flex>

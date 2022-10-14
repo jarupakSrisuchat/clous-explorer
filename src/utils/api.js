@@ -74,7 +74,7 @@ export function getAmount(tx, denom) {
       let value = result.plus(BigNumber(messages[i].data.value));
       result = value;
     } else {
-      messages[i].amount.map((e) => {
+      messages[i].amount?.map((e) => {
         e.denom == denom
           ? (result = result.plus(BigNumber(e.amount)))
           : (result = result.plus(BigNumber(0)));
@@ -82,11 +82,12 @@ export function getAmount(tx, denom) {
     }
   }
 
-  authInfo.fee.amount.map((e) => {
+  authInfo.fee?.amount?.map((e) => {
     e.denom == denom
       ? (fee = fee.plus(BigNumber(e.amount)))
       : (fee = fee.plus(BigNumber(0)));
   });
+
   return {
     amount: result.toString(),
     fee: fee.toString(),

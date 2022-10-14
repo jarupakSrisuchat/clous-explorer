@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { apiUrl } from "../cosmos/api";
 import { getChainInfo } from "../utils";
+import { SixDataChainConnector } from "@sixnetwork/six-data-chain-sdk";
 
 export const ChainContext = createContext({});
 
@@ -11,11 +12,21 @@ export function useChainContext() {
 
 export const ChainProvider = ({ children }) => {
   const [height, setHeight] = useState(0);
-  const [chain, setChainName] = useState("atmos");
+  const [chain, setChainName] = useState("six");
   const [info, setInfo] = useState({});
   const [trigger, setTrigger] = useState(0);
   const [params, setParams] = useState(null);
+  const [sixApiClient, setSixApiClient] = useState(null)
+  
+  useEffect(async () => {
+    if(info.sixApi){
+      const sixConnector = new SixDataChainConnector(info.sixApi)
+    const apiClient = await sixConnector.connectAPIClient()
+    setSixApiClient(apiClient)
+    }
+  },[chain])
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(async () => {
     if (info) {
       await getHeight();
@@ -62,6 +73,8 @@ export const ChainProvider = ({ children }) => {
     }
   };
 
+
+
   const setChain = (chain) => {
     if (getChainInfo(chain)) {
       setChain(chain);
@@ -81,6 +94,8 @@ export const ChainProvider = ({ children }) => {
     info,
     toggleTrigger,
     params,
+    setChain,
+    sixApiClient
   };
   return (
     <ChainContext.Provider value={value}>{children}</ChainContext.Provider>

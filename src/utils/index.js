@@ -20,8 +20,9 @@ export function formatCoin(chain, _denom, _wei) {
     10 ** parseInt(getChainInfo(chain).coins[_denom].decimals)
   );
   let denom = getChainInfo(chain).coins[_denom].format;
+
   return {
-    amount: amount.toFormat(),
+    amount: isNaN(amount) ? 0 : amount.toFormat(),
     denom: denom,
   };
 }
