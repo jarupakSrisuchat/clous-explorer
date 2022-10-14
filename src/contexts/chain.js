@@ -24,7 +24,7 @@ export const ChainProvider = ({ children }) => {
     const apiClient = await sixConnector.connectAPIClient()
     setSixApiClient(apiClient)
     }
-  },[chain])
+  },[chain, info])
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(async () => {
