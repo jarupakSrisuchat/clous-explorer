@@ -5,7 +5,7 @@ export const chainInfo = [
     name: "Six datalayer mainnet",
     chainId: "six-9000",
     rpc: "https://sixnft-rpc.sixprotocol.net:26657",
-    api: "https://sixnft-rpc.sixprotocol.net:443/",
+    api: "https://sixnft-rpc.sixprotocol.net/",
     mainCoin: "stake",
     coins: {
       stake: {
