@@ -1,4 +1,4 @@
-import { Box, Heading } from "@chakra-ui/react";
+import { Box, Button, Heading } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import ReactJson from "react-json-view";
 import { useParams } from "react-router-dom";
@@ -12,6 +12,7 @@ const Schema = (props) => {
   const {sixApiClient, ...chainContext} = useChainContext();
     const [schema, setSchema] = useState([])
     const {code,chain} = useParams()
+    const [isCollapse, setIsCollapse] = useState(true)
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(async () => {
@@ -33,9 +34,13 @@ const Schema = (props) => {
         padding={3}
         style={{ paddingLeft: 20, paddingRight: 20, marginBottom: 10, display: 'flex', rowGap: 20, flexDirection: 'column' }}
       >
+        <Button onClick={e => {
+          e.preventDefault()
+          setIsCollapse(!isCollapse)
+        }}>Toggle</Button>
 <ReactJson
           name={code}
-          collapsed
+          collapsed={isCollapse}
           displayDataTypes={false}
           displayObjectSize={false}
           theme={"bright"}
